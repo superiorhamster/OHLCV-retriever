@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  hose-retriever:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: hose-ohlcv-retriever:v2.0
+    container_name: hose_retriever_app
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      # Persist Parquet files, SQLite progress, and raw JSON envelopes on host
+      - ./data:/app/data
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/retriever/status')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
