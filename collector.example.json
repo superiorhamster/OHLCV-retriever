@@ -1,0 +1,15 @@
+{
+  "start_date": "2000-07-28",
+  "end_date": null,
+  "max_workers": 3,
+  "max_retries": 5,
+  "request_timeout": 30,
+  "request_delay": 0.5,
+  "chunk_years": 3,
+  "vci_count_back": 1000,
+  "close_diff_pct": 1.0,
+  "volume_diff_pct": 1.0,
+  "audit_days": 14,
+  "providers": ["kbs", "vci"],
+  "data_dir": "data"
+}
